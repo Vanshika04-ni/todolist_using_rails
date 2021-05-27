@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Todolists</h1>
+
+<table  class=" table table-bordered table-hover">
+  <thead class="table-dark ">
+    <tr>
+      <th>TASK</th>
+      <th>COMPLETED</th>
+      <th>ACTION</th>
+      <th>ACTION</th>
+     
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @todolists.each do |todolist| %>
+      <% if todolist.completed %>
+          <tr class="table-success">
+          <td><strike><%= todolist.task  %></strike></td>
+          <td><%= todolist.completed %></td>
+          <td><%= link_to 'Edit', edit_todolist_path(todolist),class:"btn btn-outline-primary" %></td>
+          <td><%= link_to 'Destroy', todolist, method: :delete,class:"btn btn-outline-danger"%></td>
+          </tr>
+      <% else %>
+          <tr class="table-warning">
+          <td><%= todolist.task  %></td>
+          <td><%= todolist.completed %></td>
+          <td><%= link_to 'Edit', edit_todolist_path(todolist),class:"btn btn-outline-primary" %></td>
+          <td><%= link_to 'Destroy', todolist, method: :delete,class:"btn btn-outline-danger"%></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+<%= render 'form', todolist: @todolist %>
+<br>
+
